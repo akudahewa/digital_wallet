@@ -1,5 +1,8 @@
 <p>Digital wallet</p>
 <p>Spring boot Digital wallet Application Digital wallet application provide various REST APIs to manage digital wallet REST API end points</p>
+<p> java version "1.8.0_231</p>
+<p> Mongodb version "v3.4.6"</p>
+
 <p>mvn clean install</p>
 <p>mvn spring-boot:run</p>
 <p># Add account URL : <a href="http://localhost:8080/accounts ">http://localhost:8080/accounts </a></p>
