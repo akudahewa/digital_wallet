@@ -1,2 +1,2 @@
-# digital_wallet
+# digital wallet
 Demo Application od Digital wallet
