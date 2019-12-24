@@ -53,6 +53,24 @@ public class AccountManageServiceImpl implements AccountManageService {
 		account.get().setBalance(newBalance);
 		return saveOrUpdateAccount(account.get());
 	}
+	
+	@Override
+	public Account addAccountBalance(String id, RechargeRequest recharge) {
+		Optional<Account> account = accountRepository.findById(id);
+		if(!account.isPresent()) {
+			 throw new RecordNotFoundException("Record not found");
+		 }
+		String[] promoCodes = recharge.getPromocodes();
+		int promoBalance = 0;
+		for (String code : promoCodes) {
+			promoBalance += promotionContext.executePromotion(code,account,recharge.getRechargeAmount());
+		}
+		int totalBalance = account.get().getBalance()+promoBalance+recharge.getRechargeAmount();
+		account.get().setBalance(totalBalance);
+		account.get().setRecharged(true);
+//		Account genAccount = accountRepository.saveOr(account.get());
+		return saveOrUpdateAccount(account.get());
+	}
 
 	@Override
 	public Account use(String id,int useAmount) {
@@ -86,6 +104,8 @@ public class AccountManageServiceImpl implements AccountManageService {
 		Account genAccount = accountRepository.save(account.get());
 		return genAccount;
 	}
+
+	
 
 	
 }

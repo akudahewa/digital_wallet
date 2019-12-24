@@ -13,6 +13,7 @@ public interface AccountManageService {
 	 Account useBalance(String id,int amount);
 	 int checkBalance(String id);
 	 public Account addBalance(String id,RechargeRequest recharge);
+	 Account addAccountBalance(String id,RechargeRequest recharge);
 	
 	 
 	 
